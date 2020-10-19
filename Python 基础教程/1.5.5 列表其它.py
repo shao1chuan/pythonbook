@@ -1,9 +1,8 @@
-
 a_num = [0.01,"zhangsan",[1,2,3]]
 a_num+=[2]
 print(a_num)
 print(a_num*2)
-# 使用列表的pop()方法删除并返回指定（默认为最后一个）位置上的元素，如果给定的索引超出了列表的范围则抛出异常。
+print("使用列表的pop()方法删除并返回指定（默认为最后一个）位置上的元素，如果给定的索引超出了列表的范围则抛出异常。")
 print(a_num.pop())
 print(a_num.pop(1))
 print(a_num)
