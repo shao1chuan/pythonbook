@@ -24,4 +24,7 @@ class Retangle(Shape):
 s = Shape('red')
 c1 = Circle('green',13)
 r = Retangle('green',13,22)
+print(s,c1,r)
 print(r.area())
+
+# 一定不要忘记在子类的init方法中调用super()._init_()

@@ -4,7 +4,7 @@ data = np.genfromtxt('data.txt',delimiter=' ')
 print(data)
 
 # 1\. 打开 - 文件名需要注意大小写
-file = open("data.txt",encoding='utf-8')
+file = open("data.txt", encoding='utf-8')
 print(file)
 # 完整例子\. 读取
 text = file.read()

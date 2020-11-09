@@ -23,5 +23,3 @@ module.output()
 import syu
 syu.module.output()
 
-# from syu import *
-# module1.output1()
