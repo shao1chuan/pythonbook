@@ -7,6 +7,7 @@ l = [a/b]
 for i in range(1,20):
     a,b = a+b,a
     l.append(a/b)
+print(l)
 print(reduce(lambda x,y:x+y,l))
 
 
