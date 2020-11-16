@@ -44,7 +44,7 @@ def LassoRegression(degree, alpha):
         ("std_scaler", StandardScaler()),
         ("lasso_reg", Lasso(alpha=alpha))
     ])
-lasso1_reg = LassoRegression(20, 0.01)
+lasso1_reg = LassoRegression(20, 0.1)
 lasso1_reg.fit(X_train, y_train)
 y1_predict = lasso1_reg.predict(X_test)
 mean_squared_error(y_test, y1_predict)

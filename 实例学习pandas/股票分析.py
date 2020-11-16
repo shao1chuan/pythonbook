@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # 从雅虎获得股票数据
 # pip install pandas_datareader
 
-# import data reader package
+# import data reader 1.14 package
 import pandas_datareader as pdr
 
 # read data from Yahoo! Finance for a specific
