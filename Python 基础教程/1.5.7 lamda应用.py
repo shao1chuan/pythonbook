@@ -1,4 +1,6 @@
+# https://blog.csdn.net/zjuxsl/article/details/77104382
 # 一、lambda函数也叫匿名函数，即，函数没有具体的名称。先来看一个最简单例子：
+
 def f(x):
   return x**2
 print(f(4))
@@ -6,18 +8,19 @@ print(f(4))
 g = lambda x : x**2
 print (g(4))
 
-# lambda语句中，冒号前是参数，可以有多个，用逗号隔开，冒号右边的返回值。lambda语句构建的其实是一个函数对象
-foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
-print (filter(lambda x: x % 3 == 0, foo))
+# lambda语句中，冒号前是参数，可以有多个，用逗号隔开，冒号右边的返回值。
+# lambda语句构建的其实是一个函数对象
+from functools import reduce
+reduce(lambda x,y:x+y, [1,2,3]) #6
+reduce(lambda x,y:x * y, [1,2,4]) #8
+reduce(lambda x,y: x and y, [True,False,True]) #False
 
-# 二、lambda和普通的函数相比，就是省去了函数名称而已，同时这样的匿名函数，又不能共享在别的地方调用。
-#
-# 其实说的没错，lambda在Python这种动态的语言中确实没有起到什么惊天动地的作用，因为有很多别的方法能够代替lambda。
-#
-# 1. 使用Python写一些执行脚本时，使用lambda可以省去定义函数的过程，让代码更加精简。
-#
-# 2. 对于一些抽象的，不会别的地方再复用的函数，有时候给函数起个名字也是个难题，使用lambda不需要考虑命名的问题。
-#
-# 3. 使用lambda在某些时候让代码更容易理解。
+def f(x, y):
+  return x + y
+reduce(lambda x, y: f(x, y), [1, 2, 3])  # 6
+
+
+
+
 
 

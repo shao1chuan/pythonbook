@@ -1,4 +1,13 @@
+# reduce() 函数会对参数序列中元素进行累积。
 from functools import reduce
+def f(x, y):
+  return x + y
+reduce(f, [1, 2, 3])  # 6
+
+
+
+
+
 
 lst=[1,2,3,4]
 print(reduce(lambda x,y: x*y+1, lst))

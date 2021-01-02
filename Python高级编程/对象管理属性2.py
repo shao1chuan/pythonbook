@@ -26,6 +26,11 @@ class Hero(Person):
 person = Person()
 print ('Person.__dict__: ', Person.__dict__)
 print ('person.__dict__: ', person.__dict__)
+# person.age = 22
+person.aaa = 22
+person.sex = 'girl'
+print ('person.__dict__: ', person.__dict__)
+
 hero = Hero()
 print ('Hero.__dict__: ', Hero.__dict__ )
 print ('hero.__dict__: ', hero.__dict__)
