@@ -50,7 +50,7 @@ class GD():
             error[i]=self.loss(w,b)
         return w,b,error
     
-    
+    # ssss
 w = 12
 b =12
 income = pd.read_csv(r'Salary_Data.csv')
