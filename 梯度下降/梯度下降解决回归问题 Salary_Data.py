@@ -49,6 +49,8 @@ class GD():
             w,b = self.step_grad(w, b)
             error[i]=self.loss(w,b)
         return w,b,error
+    
+    
 w = 12
 b =12
 income = pd.read_csv(r'Salary_Data.csv')
