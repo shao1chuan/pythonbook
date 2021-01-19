@@ -1,5 +1,5 @@
 import  numpy as np
-a1 = np.array([i for i in range(1,5)])
+a1 = np.array([1,2,3,4])
 np.exp2(a1)
 np.power(3, a1)
 np.log10(a1)

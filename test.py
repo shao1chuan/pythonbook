@@ -1,112 +1,57 @@
-import turtle
+
+# -*- coding: utf-8 -*-
+import sympy
+import numpy as np
 import math
-import sys
+from matplotlib.pyplot import plot
+from matplotlib.pyplot import show
+import matplotlib.pyplot as plt
+import matplotlib
 
-tick = 0.1
+# 解决无法显示中文问题，fname是加载字体路径，根据自身pc实际确定，具体请百度
+# zhfont1 = matplotlib.font_manager.FontProperties(fname='/System/Library/Fonts/Hiragino Sans GB W3.ttc')
 
-position_human  = (150,50*(3**0.5))
-position_lion_1 = (0,0)
-position_lion_2 = (150,150*(3**0.5))
+# 随机产生3个参考节点坐标
+maxy = 1000
+maxx = 1000
+cx = maxx * np.random.rand(3)
+cy = maxy * np.random.rand(3)
+dot1 = plot(cx, cy, 'k^')
 
-speed_human   = 10*tick
-speed_lion_1  = 15*tick
-speed_lion_2  = 20*tick
-
-degree = 25
-times = 0
-
-#判断人在线上还是线下
-
-
-while(True): #使其无限循环下去
-  turtle.penup()
-  turtle.goto(position_human)
-  check_k = (position_lion_2[1]-position_lion_1[1])/(position_lion_2[0]-position_lion_1[0])
-  check_b = position_lion_2[1] - (check_k*position_lion_2[0])
-  check = check_k*position_human[0] + check_b
-  #以下是人前进代码
-  if(position_human[1]<check):
-    #人在线条之下
-    middle_dot = (((position_lion_2[0]+position_lion_1[0])/2),((position_lion_2[1]+position_lion_1[1])/2))
-    turtle.setheading(turtle.towards(middle_dot)+degree)
-    turtle.pendown()
-    turtle.fd(speed_human)
-    position_human = tuple(turtle.position())
-    print("below")
-  elif(position_human[1]>check):
-    axis_k = (position_human[1]-position_lion_1[1])/(position_human[0]-position_lion_1[0])
-    axis_b = position_human[1] - (axis_k*position_human[0])
-    middle_dot = (((position_lion_2[0]+position_lion_1[0])/2),((position_lion_2[1]+position_lion_1[1])/2))
-    vertical_k = -1/axis_k
-    vertical_b = middle_dot[1] - (vertical_k*middle_dot[0])
-    vertical_dot = ((vertical_b-axis_b)/(axis_k-vertical_k),(axis_k*((vertical_b-axis_b)/(axis_k-vertical_k)) + axis_b))
-    point_dot = ((2*vertical_dot[0]-middle_dot[0]),(2*vertical_dot[1]-middle_dot[1]))
-    turtle.pendown()
-    turtle.setheading(turtle.towards(point_dot) + degree)
-    turtle.fd(speed_human)
-    position_human = tuple(turtle.position())
-    print("above")
-  elif(position_human == check):
-    print("!!!!oneline")
-    break
-  distance_1 = turtle.distance(position_lion_1)
-  distance_2 = turtle.distance(position_lion_2)
-  if(distance_1<=speed_lion_1 or distance_2<=speed_lion_2):
-    print(times)
-    break
-  #以下是狮子追人代码
-  turtle.penup()
-  turtle.goto(position_lion_1)
-  turtle.setheading(turtle.towards(position_human))
-  turtle.pendown()
-  turtle.forward(speed_lion_1)
-  position_lion_1 = tuple(turtle.position())
-  turtle.penup()
-  turtle.goto(position_lion_2)
-  turtle.setheading(turtle.towards(position_human))
-  turtle.pendown()
-  turtle.forward(speed_lion_2)
-  position_lion_2 = tuple(turtle.position())
-  times = times + 1
-
-# axis_k = (position_human[1]-position_lion_1[1])/(position_human[0]-position_lion_1[0])
-# axis_b = position_human[1] - (axis_k*position_human[0])
-
-# middle_dot = (((position_lion_2[0]-position_lion_1[0])/2),((position_lion_2[1]-position_lion_1[1])/2))
-
-# vertical_k = -1/axis_k
-# vertical_b = middle_dot[1] - (vertical_k*middle_dot[0])
+# 生成盲节点，以及其与参考节点欧式距离
+mtx = maxx * np.random.rand()
+mty = maxy * np.random.rand()
+# plt.hold('on')
+dot2 = plot(mtx, mty, 'go')
+da = math.sqrt(np.square(mtx - cx[0]) + np.square(mty - cy[0]))
+db = math.sqrt(np.square(mtx - cx[1]) + np.square(mty - cy[1]))
+dc = math.sqrt(np.square(mtx - cx[2]) + np.square(mty - cy[2]))
 
 
-# vertical_dot = ((vertical_b-axis_b)/(axis_k-vertical_k),(axis_k*((vertical_b-axis_b)/(axis_k-vertical_k)) + axis_b))
+# 计算定位坐标
+def triposition(xa, ya, da, xb, yb, db, xc, yc, dc):
+    x, y = sympy.symbols('x y')
+    f1 = 2 * x * (xa - xc) + np.square(xc) - np.square(xa) + 2 * y * (ya - yc) + np.square(yc) - np.square(ya) - (
+                np.square(dc) - np.square(da))
+    f2 = 2 * x * (xb - xc) + np.square(xc) - np.square(xb) + 2 * y * (yb - yc) + np.square(yc) - np.square(yb) - (
+                np.square(dc) - np.square(db))
+    result = sympy.solve([f1, f2], [x, y])
+    locx, locy = result[x], result[y]
+    return [locx, locy]
 
-# point_dot = ((2*vertical_dot[0]-middle_dot[0]),(2*vertical_dot[1]-middle_dot[1]))
 
+# 解算得到定位节点坐标
+[locx, locy] = triposition(cx[0], cy[0], da, cx[1], cy[1], db, cx[2], cy[2], dc)
+# plt.hold('on')
+dot3 = plot(locx, locy, 'r*')
 
-# turtle.pendown()
-# turtle.goto(position_lion_2)
-# turtle.penup()
-# turtle.goto(position_human)
-# turtle.pendown()
-# turtle.setheading(turtle.towards(point_dot)+40)
-# turtle.forward(100)
-# turtle.penup()
-# turtle.goto(position_human)
-# turtle.setheading(turtle.towards(middle_dot))
-# turtle.pendown()
-# turtle.forward(100)
-
-# turtle.penup()
-# turtle.goto(position_lion_1)
-# turtle.pendown()
-# turtle.goto(position_lion_2)
-# middle_dot = (((position_lion_2[0]-position_lion_1[0])/2),((position_lion_2[1]-position_lion_1[1])/2))
-# print(middle_dot)
-# turtle.penup()
-# turtle.goto(position_human)
-# turtle.pendown()
-# turtle.setheading(turtle.towards(middle_dot) + 40 )
-
-# turtle.fd(100)
-
-input("ssssss")
+# 显示脚注
+x = [[locx, cx[0]], [locx, cx[1]], [locx, cx[2]]]
+y = [[locy, cy[0]], [locy, cy[1]], [locy, cy[2]]]
+for i in range(len(x)):
+    plt.plot(x[i], y[i], linestyle='--', color='g')
+plt.title('Three point locate')
+plt.legend(['Ref', '盲节点', 'Locate'], loc='lower right')
+plt.show()
+derror = math.sqrt(np.square(locx - mtx) + np.square(locy - mty))
+print(derror)
