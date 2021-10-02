@@ -27,7 +27,7 @@ def main():
             f(x).backward()
             optimizer.step()
             loss.append(f(x))
-            print(loss[i])
+            print(f(x))
       y = f(x)
       print("函数最小值是： ",y)
       plotf(loss)

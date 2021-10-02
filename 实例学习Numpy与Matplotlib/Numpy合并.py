@@ -12,6 +12,9 @@ print(b1.shape,b2.shape,b3.shape)
 b4 = np.concatenate([b2, b3])
 print(f"b4 = {b4} \n  ")
 
+b5 = np.vstack([b2, b3])
+print(f"b5 = {b5} \n  ")
+
 
 
 
