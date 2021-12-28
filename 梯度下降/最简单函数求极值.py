@@ -17,12 +17,12 @@ def plotf(loss):
 def main():
       x = 15
       lr = 0.1
-      steps = 40
+      steps = 400
       loss = []
       for i in range(steps):
             x = x-lr*df(x)
             loss.append(f(x))
-      print(loss[i])
+            print(loss[i])
       # y = f(x)
       # print(y)
       plotf(loss)
