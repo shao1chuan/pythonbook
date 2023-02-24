@@ -1,3 +1,4 @@
+# https://www.bilibili.com/video/BV1ar4y137GD/?spm_id_from=333.337.search-card.all.click&vd_source=311a862c74a77082f872d2e1ab5d1523
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -16,15 +17,15 @@ def plotf(loss):
 
 def main():
       x = 15
-      lr = 0.1
+      lr = 1.1
       steps = 400
       loss = []
       for i in range(steps):
             x = x-lr*df(x)
             loss.append(f(x))
-            print(loss[i])
-      # y = f(x)
-      # print(y)
+            # print(loss[i])
+      y = f(x)
+      print(y)
       plotf(loss)
 
 
