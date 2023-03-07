@@ -31,4 +31,4 @@ turtle.setheading(angle1)
 turtle.forward(15)
 lion1 = turtle.position()
 
-time.sleep(10)
+turtle.done()
