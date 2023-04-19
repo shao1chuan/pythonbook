@@ -1,0 +1,6 @@
+https://blog.csdn.net/not_so_bad/article/details/127705403
+安装
+
+pip install pipx
+pipx install poetry
+pipx ensurepath

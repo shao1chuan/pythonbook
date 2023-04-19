@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "real-time-charts-with-fastapi"
+version = "0.2.1"
+description = "Sample application for the blog Creating Real-Time Charts with FastAPI"
+authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.92.0"
+Jinja2 = "^3.1.2"
+uvicorn = { extras = ["standard"], version = "^0.20.0" }
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.7"
+black = "^23.1.0"
+isort = "^5.11.5"
+mypy = "^1.0"
+pyproject-flake8 = "^5.0.4"
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+force_grid_wrap = 0
+use_parentheses = true
+include_trailing_comma = true
+ensure_newline_before_comments = true
+atomic = true
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = """
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+^/setup.py
+"""
+
+[tool.mypy]
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = ["E203"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
